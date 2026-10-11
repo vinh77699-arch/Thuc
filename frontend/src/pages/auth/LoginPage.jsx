@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 import '../../components/UI.css';
@@ -63,7 +63,12 @@ export default function LoginPage() {
         <div style={{ width: '100%', maxWidth: 420 }}>
           <div style={{ marginBottom: 32 }}>
             <h1 style={{ fontSize: 24, fontWeight: 900, color: 'var(--ink)', marginBottom: 6 }}>Đăng nhập</h1>
-            <p style={{ fontSize: 13.5, color: 'var(--muted)' }}>Chọn vai trò để đăng nhập nhanh, hoặc nhập tài khoản</p>
+            <p style={{ fontSize: 13.5, color: 'var(--muted)' }}>
+              Chọn vai trò để đăng nhập nhanh, hoặc nhập tài khoản.{' '}
+              <Link to="/register" style={{ color: 'var(--primary)', fontWeight: 700, textDecoration: 'none' }}>
+                Tạo tài khoản mới
+              </Link>
+            </p>
           </div>
 
           {/* Quick role buttons */}

@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage, limits: { fileSize: 2 * 1024 * 1024 } });
 
 // ── AUTH ──────────────────────────────────────────────
+router.post('/auth/register', authC.register);
 router.post('/auth/login', authC.login);
 router.get('/auth/me', authenticate, authC.me);
 router.put('/auth/profile', authenticate, upload.single('avatar'), authC.updateProfile);

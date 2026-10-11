@@ -5,6 +5,29 @@ const { User, Branch } = require('../models');
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
 
+exports.register = async (req, res) => {
+  try {
+    const { name, email, phone, password } = req.body;
+    if (!name || !email || !password)
+      return res.status(400).json({ message: 'Vui lòng nhập họ tên, email và mật khẩu' });
+    if (password.length < 6)
+      return res.status(400).json({ message: 'Mật khẩu phải có ít nhất 6 ký tự' });
+
+    const exists = await User.findOne({ where: { email } });
+    if (exists)
+      return res.status(409).json({ message: 'Email này đã được đăng ký' });
+
+    const hashed = await bcrypt.hash(password, 12);
+    const user = await User.create({ name, email, phone: phone || null, password: hashed, role: 'student', is_active: true });
+
+    const token = signToken(user.id);
+    const { password: _, ...data } = user.toJSON();
+    res.status(201).json({ token, user: data });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
