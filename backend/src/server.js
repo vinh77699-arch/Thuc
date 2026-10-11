@@ -29,9 +29,16 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-sequelize.sync({ alter: false }).then(() => {
+sequelize.sync({ force: false }).then(async () => {
   console.log('✅ Kết nối database thành công');
-  app.listen(PORT, () => console.log(`🚀 Server đang chạy tại http://localhost:${PORT}`));
+  const { User } = require('./models');
+  const count = await User.count().catch(() => 0);
+  if (count === 0) {
+    console.log('⚙️  Database trống, chạy seed...');
+    try { require('./utils/seed'); } catch (e) { console.error('Seed lỗi:', e.message); }
+  }
+  app.listen(PORT, () => console.log(`🚀 Server đang chạy tại port ${PORT}`));
 }).catch(err => {
   console.error('❌ Lỗi kết nối database:', err.message);
+  process.exit(1);
 });
