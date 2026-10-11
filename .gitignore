@@ -1,0 +1,17 @@
+# Deploy zips
+*.zip
+
+# Backend
+backend/node_modules/
+backend/.env
+backend/data/*.sqlite
+backend/uploads/avatars/*
+!backend/uploads/avatars/.gitkeep
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Misc
+.DS_Store
+Thumbs.db

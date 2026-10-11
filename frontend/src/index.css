@@ -1,0 +1,45 @@
+:root {
+  /* IELTS Fighter palette */
+  --primary: #E31937;
+  --primary-dark: #C0152E;
+  --primary-light: #FF4D67;
+  --primary-faint: #FFF0F2;
+  --primary-faint2: #FFE0E5;
+
+  --bg: #F7F8FA; --surface: #FFFFFF; --s2: #F0F2F5; --border: #E4E7EC;
+  --text: #1A202C; --muted: #718096; --faint: #A0AEC0; --ink: #111827;
+
+  --sb: #E31937; --sb-dark: #C0152E; --sb-text: rgba(255,255,255,.75); --sb-active: #FFFFFF;
+
+  --green: #0E7C4A; --green-bg: #ECFDF5;
+  --amber: #B45309; --amber-bg: #FFFBEB;
+  --red: #E31937; --red-bg: #FFF0F2;
+  --blue: #1A56DB; --blue-bg: #EBF5FF;
+  --orange: #DD6B20; --orange-bg: #FFFAF0;
+
+  --r: 8px; --r-lg: 14px;
+  --sh: 0 1px 3px rgba(0,0,0,.08), 0 1px 6px rgba(0,0,0,.04);
+  --sh-md: 0 4px 20px rgba(0,0,0,.1);
+  --fu: 'Nunito', -apple-system, sans-serif;
+  --fd: 'Playfair Display', Georgia, serif;
+  --fm: 'IBM Plex Mono', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1117; --surface: #1A1E2A; --s2: #242836; --border: #2D3344;
+    --text: #E2E8F0; --muted: #718096; --faint: #4A5568; --ink: #F7FAFC;
+    --primary-faint: #2D0A10; --primary-faint2: #3D1018;
+    --green: #48BB78; --green-bg: #0A2E1C;
+    --amber: #F6AD55; --amber-bg: #2D1E0A;
+    --blue: #63B3ED; --blue-bg: #0A1E3D;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+body { background: var(--bg); color: var(--text); font-family: var(--fu); font-size: 14px; line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--fu); cursor: pointer; }
+input, select, textarea { font-family: var(--fu); }
+img { max-width: 100%; }
